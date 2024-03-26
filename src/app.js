@@ -15,7 +15,7 @@ import cors from "cors"
 const app = express()
 
 app.use(express.json())
-app.use(cors({credentials: true, origin: "http://localhost:5173"}))
+app.use(cors({credentials: true, origin: "https://ecommercecoderhousebackend.netlify.app"}))
 app.use(express.urlencoded({ extended: true }))
 app.use(middlewareLogger)
 app.use(cookieParser(process.env.COOKIE_SIGN))
