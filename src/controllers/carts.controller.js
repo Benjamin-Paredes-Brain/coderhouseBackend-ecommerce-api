@@ -94,10 +94,15 @@ export const updateQuantityProductsInCartsController = async (req, res) => {
 
 export const addProductInCartController = async (req, res) => {
     try {
+        const user = req.user
         let pid = req.params.pid
         let cid = req.params.cid
 
         let product = await productsService.getProductsByIdDAO(pid)
+
+        if (user.role === "premium" && user.email === product.owner) {
+            return res.status(400).send({ status: "error", message: "Cannot add your own product in cart" });
+        }
 
         if (!product) {
             return res.status(404).send({ status: "error", message: "Product not found" });
