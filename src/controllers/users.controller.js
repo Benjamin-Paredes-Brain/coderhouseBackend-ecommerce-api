@@ -72,7 +72,7 @@ export const loginUserController = async (req, res) => {
             return res.status(400).send({ status: "error", message: "Cannot login user" })
         }
 
-        res.cookie("authCookie", token, { signed: true, httpOnly: true });
+        res.cookie("authCookie", token, { signed: true, httpOnly: true, sameSite: "none", });
         req.logger.info(`User with email ${email} logged successfully`)
         await usersService.updateUserConnectionDAO(user._id)
         return res.status(200).send({ message: "Login successful", payload: token });
