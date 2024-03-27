@@ -81,7 +81,7 @@ export const getProductsController = async (req, res) => {
         let result = await productsService.getProductsDAO(query, options)
         if (!result) return res.status(404).send({ status: "error", message: "Cannot get products" })
 
-        const baseUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+        const baseUrl = "https://coderhousebackend-ecommerce-api-production.up.railway.app" + req.originalUrl;
 
         return res.status(200).send({
             status: "success",
